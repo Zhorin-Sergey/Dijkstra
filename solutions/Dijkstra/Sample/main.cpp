@@ -10,7 +10,7 @@ void main() {
   std::ifstream in("016");
   int N, M;
   in >> N >> M;
-  std::vector<std::list<std::pair<int, int>>> graph(N + 1);  // 0-ый элемент всегда будет пустой
+  std::vector<std::list<std::pair<int, int>>> graph(N + 1);
   for (int i = 0; i < M; ++i) {
     int a, b, w;
     in >> a >> b >> w;
@@ -19,7 +19,7 @@ void main() {
   }
   int* up = new int[N + 1];
   int* dist = new int[N + 1];
-  int* dist1 = new int[N + 1]; // максимальное кол-во дорог из 1 вершины в остальные
+  int* dist1 = new int[N + 1];
   heap och(N, 2);
   dist[1] = 0;
   dist1[1] = 0;
@@ -41,7 +41,8 @@ void main() {
         dist1[i->first] = dist1[j] + 1;
         och.update(i->first, dist[j] + i->second);
       }
-      if (((dist[j] + i->second) == dist[i->first]) && ((dist1[j] + 1) > dist1[i->first])) {
+      if (((dist[j] + i->second) == dist[i->first])
+		 && ((dist1[j] + 1) > dist1[i->first])) {
         up[i->first] = j;
         dist1[i->first] = dist1[j] + 1;
       }

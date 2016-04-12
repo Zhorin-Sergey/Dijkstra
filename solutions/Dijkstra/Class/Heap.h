@@ -4,12 +4,12 @@
 #include <vector>
 
 class heap {
-private:
+ private:
   int size;
   int d;
   std::pair<int, int>* arr;
   int n;
-public:
+ public:
   int min_child(int i);
   void up(int i);
   void down(int i);

@@ -42,7 +42,7 @@ void main() {
         och.update(i->first, dist[j] + i->second);
       }
       if (((dist[j] + i->second) == dist[i->first])
-		 && ((dist1[j] + 1) > dist1[i->first])) {
+      && ((dist1[j] + 1) > dist1[i->first])) {
         up[i->first] = j;
         dist1[i->first] = dist1[j] + 1;
       }

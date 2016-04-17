@@ -6,16 +6,32 @@
 #include <limits.h>
 #include <iostream>
 
-void main() {
-  std::ifstream in("016");
+void main(int argc, char *argv[]) {
   int N, M;
-  in >> N >> M;
+  if (argv[1] != 0) {
+    std::ifstream in(argv[1]);
+    in >> N >> M;
+  } else {
+    N = 3;
+    M = 3;
+  }
   std::vector<std::list<std::pair<int, int>>> graph(N + 1);
-  for (int i = 0; i < M; ++i) {
-    int a, b, w;
-    in >> a >> b >> w;
-    graph[a].push_back(std::make_pair(b, w));
-    graph[b].push_back(std::make_pair(a, w));
+  if (argv[1] != 0) {
+    std::ifstream in(argv[1]);
+    in >> N >> M;
+    for (int i = 0; i < M; ++i) {
+      int a, b, w;
+      in >> a >> b >> w;
+      graph[a].push_back(std::make_pair(b, w));
+      graph[b].push_back(std::make_pair(a, w));
+    }
+  } else {
+    graph[1].push_back(std::make_pair(2, 1));
+    graph[2].push_back(std::make_pair(1, 1));
+    graph[1].push_back(std::make_pair(3, 2));
+    graph[3].push_back(std::make_pair(2, 2));
+    graph[2].push_back(std::make_pair(3, 1));
+    graph[3].push_back(std::make_pair(2, 1));
   }
   int* up = new int[N + 1];
   int* dist = new int[N + 1];

@@ -32,27 +32,26 @@ avltree *avltree_add(avltree *tree, int key, int value) {
     tree->left = avltree_add(tree->left, key, value);
     if (avltree_height(tree->left) -
     avltree_height(tree->right) == 2) {
-      if (avltree_height(tree->left->right) < avltree_height(tree->left->left)) {
+      if (avltree_height(tree->left->right)
+        < avltree_height(tree->left->left)) {
         tree = avltree_right_rotate(tree);
-      }
-      else {
+      } else {
         tree = avltree_leftright_rotate(tree);
       }
     }
-  }
-  else  {
+  } else {
     tree->right = avltree_add(tree->right, key, value);
-    if (avltree_height(tree->right) - avltree_height(tree->left) == 2)
-    {
-      if (avltree_height(tree->right->right) > avltree_height(tree->right->left)) {
+    if (avltree_height(tree->right) - avltree_height(tree->left) == 2) {
+      if (avltree_height(tree->right->right)
+        > avltree_height(tree->right->left)) {
         tree = avltree_left_rotate(tree);
-      }
-      else {
+      } else {
         tree = avltree_rightleft_rotate(tree);
       }
     }
   }
-  tree->height = std::max(avltree_height(tree->left), avltree_height(tree->right)) + 1;
+  tree->height = std::max(avltree_height(tree->left),
+  avltree_height(tree->right)) + 1;
   return tree;
 }
 
@@ -116,13 +115,11 @@ avltree *avltree_min(avltree *tree, avltree **min) {
   }
   tree->height = std::max(
   avltree_height(tree->left),
-  avltree_height(tree->right)
-  ) + 1;
+  avltree_height(tree->right)) + 1;
   return tree;
 }
 
 avltree *avltree_del(avltree *tree, int k, int t) {
-
   if (tree->left == 0 && tree->right == 0) {
     tree->height = 0;
     return tree;
@@ -133,8 +130,7 @@ avltree *avltree_del(avltree *tree, int k, int t) {
       tree->left = 0;
       tree->height = std::max(
       avltree_height(tree->left),
-      avltree_height(tree->right)
-      ) + 1;
+      avltree_height(tree->right)) + 1;
       return tree;
     }
     if (tree->left->value == k)
@@ -146,8 +142,7 @@ avltree *avltree_del(avltree *tree, int k, int t) {
       tree->left = tmp;
       tree->height = std::max(
       avltree_height(tree->left),
-      avltree_height(tree->right)
-      ) + 1;
+      avltree_height(tree->right)) + 1;
       return tree;
     }
     if (tree->left->value == k)
@@ -155,8 +150,7 @@ avltree *avltree_del(avltree *tree, int k, int t) {
       tree->left = tree->left->right;
       tree->height = std::max(
       avltree_height(tree->left),
-      avltree_height(tree->right)
-      ) + 1;
+      avltree_height(tree->right)) + 1;
       return tree;
     }
 
@@ -165,8 +159,7 @@ avltree *avltree_del(avltree *tree, int k, int t) {
       tree->left = tree->left->left;
       tree->height = std::max(
       avltree_height(tree->left),
-      avltree_height(tree->right)
-      ) + 1;
+      avltree_height(tree->right)) + 1;
       return tree;
     }
   }
@@ -176,8 +169,7 @@ avltree *avltree_del(avltree *tree, int k, int t) {
       tree->right = tree->right->left;
       tree->height = std::max(
       avltree_height(tree->left),
-      avltree_height(tree->right)
-      ) + 1;
+      avltree_height(tree->right)) + 1;
       return tree;
     }
 
@@ -190,8 +182,7 @@ avltree *avltree_del(avltree *tree, int k, int t) {
       tree->right = tmp;
       tree->height = std::max(
       avltree_height(tree->left),
-      avltree_height(tree->right)
-      ) + 1;
+      avltree_height(tree->right)) + 1;
       return tree;
     }
     if (tree->right->value == k)
@@ -199,8 +190,7 @@ avltree *avltree_del(avltree *tree, int k, int t) {
       tree->right = 0;
       tree->height = std::max(
       avltree_height(tree->left),
-      avltree_height(tree->right)
-      ) + 1;
+      avltree_height(tree->right)) + 1;
       return tree;
     }
     if (tree->right->value == k)
@@ -208,8 +198,7 @@ avltree *avltree_del(avltree *tree, int k, int t) {
       tree->right = tree->right->right;
       tree->height = std::max(
       avltree_height(tree->left),
-      avltree_height(tree->right)
-      ) + 1;
+      avltree_height(tree->right)) + 1;
       return tree;
     }
   }
@@ -218,7 +207,8 @@ avltree *avltree_del(avltree *tree, int k, int t) {
   if (tree->right != 0)
     tree->right = avltree_del(tree->right, k, t);
   if (avltree_height(tree->right) - avltree_height(tree->left) == 2) {
-    if (avltree_height(tree->right->right) > avltree_height(tree->right->left)) {
+    if (avltree_height(tree->right->right)
+      > avltree_height(tree->right->left)) {
       tree = avltree_left_rotate(tree);
     } else {
       tree = avltree_rightleft_rotate(tree);
@@ -226,7 +216,8 @@ avltree *avltree_del(avltree *tree, int k, int t) {
   }
   if (avltree_height(tree->left) -
   avltree_height(tree->right) == 2) {
-    if (avltree_height(tree->left->right) < avltree_height(tree->left->left)) {
+    if (avltree_height(tree->left->right)
+      < avltree_height(tree->left->left)) {
       tree = avltree_right_rotate(tree);
     } else {
       tree = avltree_leftright_rotate(tree);
@@ -235,11 +226,10 @@ avltree *avltree_del(avltree *tree, int k, int t) {
 
   tree->height = std::max(
   avltree_height(tree->left),
-  avltree_height(tree->right)
-  ) + 1;
+  avltree_height(tree->right)) + 1;
   return tree;
 }
 
-int get_value(avltree *tree){
+int get_value(avltree *tree) {
   return(tree->value);
 }

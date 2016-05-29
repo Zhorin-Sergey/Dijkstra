@@ -83,7 +83,6 @@ void main(int argc, char *argv[]) {
     tree = avltree_min(tree, &tmp);
     int j = get_value(tmp);
     for (auto i = graph[j].begin(); i != graph[j].end(); ++i) {
-
       if ((dist[j] + i->second) < dist[i->first]) {
         if (tree == 0)
           continue;

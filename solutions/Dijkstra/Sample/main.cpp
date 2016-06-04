@@ -30,7 +30,7 @@ void main(int argc, char *argv[]) {
     graph[1].push_back(std::make_pair(2, 1));
     graph[2].push_back(std::make_pair(1, 1));
     graph[1].push_back(std::make_pair(3, 2));
-    graph[3].push_back(std::make_pair(2, 2));
+    graph[3].push_back(std::make_pair(1, 2));
     graph[2].push_back(std::make_pair(3, 1));
     graph[3].push_back(std::make_pair(2, 1));
   }

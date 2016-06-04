@@ -22,7 +22,7 @@ avltree *avltree_left_rotate(avltree *tree);
 avltree *avltree_leftright_rotate(avltree *tree);
 avltree *avltree_rightleft_rotate(avltree *tree);
 avltree *avltree_del(avltree *tree, int k, int t);
-int proverka(avltree *tree, int k, int t);
+//int proverka(avltree *tree, int k, int t);
 int get_value(avltree *tree);
 
 #endif  //  SOLUTIONS_DIJKSTRA_CLASS_TREE_H_

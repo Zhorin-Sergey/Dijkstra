@@ -167,18 +167,24 @@ int main(int argc, char* argv[]) {
   i = 0;
   for (int p = 0; p < segmentSize; p++) {
     int ved = p + p*n + rank*segmentSize;
+	double* vedel = new double[segmentSize - p];
+	for (int u = 0; u < segmentSize - p; u++) {
+		vedel[u] = duff[ved + (u)*n];
+	}
+
     uff[p] /= duff[ved];
     bool flag = true;
     for (int q = ved; q < n*(rank*segmentSize + p + 1); q++) {
-      duff[q] /= duff[ved];
+      duff[q] = duff[q]/vedel[0];
       if (q != ved)
         flag = false;
       for (int w = p +1; w < segmentSize; w++){
         if (flag == true)
           uff[w] -= uff[p];
-        duff[w*n + q] -= duff[q] * duff[ved + w*n];
+        duff[w*n + q] -= duff[q] * vedel[w];
       }
     }
+	delete[] vedel;
   }
   while (i<segmentSize*n) {
     printf("%lf ", duff[i]);
